@@ -1,0 +1,12 @@
+{
+  "design": "D5a",
+  "spec_version": "v2",
+  "sigma2_C_true": 0.5315527257399097,
+  "mc_mean": 0.5446067688832704,
+  "rel_err": 0.024558322272150386,
+  "acceptance": {
+    "C5a": true
+  },
+  "verdict": "PASS",
+  "runtime_seconds": 0.35741686820983887
+}

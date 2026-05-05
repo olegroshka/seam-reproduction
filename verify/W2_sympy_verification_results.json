@@ -1,0 +1,42 @@
+{
+  "verification_target": "Theorem 1 \u03c3\u00b2_C closed form: 4-step derivation chain",
+  "tool": "sympy 1.14.0",
+  "arithmetic": "exact rational",
+  "instances": [
+    {
+      "label": "K=4, K_LOC=2, K_REM=2 (smallest)",
+      "K": 4,
+      "K_REM": 2,
+      "lyapunov_residual_max": "0",
+      "step3_minus_step4_residual_max": "0",
+      "trace_DeltaVar_REM_numerical": 0.25805904779575567,
+      "trace_DeltaVar_REM_exact": "10846778201296686351242873717442450765253527913/42032156182648231539641719868327570333404901900",
+      "all_passes": true,
+      "seed": 1001
+    },
+    {
+      "label": "K=6, K_LOC=4, K_REM=2 (asymmetric)",
+      "K": 6,
+      "K_REM": 2,
+      "lyapunov_residual_max": "0",
+      "step3_minus_step4_residual_max": "0",
+      "trace_DeltaVar_REM_numerical": 0.44367329359888363,
+      "trace_DeltaVar_REM_exact": "82890698009562378067833723510852349568758561778289602692194670988292182929878960023561018783118266098629/186828234210784472233911757724293977438455721635410348480387156274169081236237922143713043509075038374575",
+      "all_passes": true,
+      "seed": 1002
+    },
+    {
+      "label": "K=8, K_LOC=4, K_REM=4 (mid)",
+      "K": 8,
+      "K_REM": 4,
+      "lyapunov_residual_max": "0",
+      "step3_minus_step4_residual_max": "0",
+      "trace_DeltaVar_REM_numerical": 0.5355559020280724,
+      "trace_DeltaVar_REM_exact": "127705566064743995771725996856092916740792061625495339737382431497543060014435579924937711661360761627510001519479777955239888744263050376526224011597942077766311687285438542825284875756955144984645137/238454222203772903312989891505731787185901874953973235213326042265570631174581864922182700387907167039200185563223844645324775014485210917807746461771154487074730522093987625103777724013629904094818100",
+      "all_passes": true,
+      "seed": 1003
+    }
+  ],
+  "overall_pass": true,
+  "runtime_seconds": 0.14612746238708496
+}

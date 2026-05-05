@@ -1,0 +1,33 @@
+{
+  "DGP": {
+    "K": 8,
+    "partition": [
+      2,
+      2,
+      4
+    ],
+    "rho_A": 0.8500000000000005
+  },
+  "sigma2_C_true": 1.3138654070850397,
+  "grad_A_check": {
+    "max_abs_diff_FD_vs_closed": 2.494706274891456e-09,
+    "rel_diff": 1.905045026872685e-09,
+    "pass": true
+  },
+  "grad_Sigma_sym_check": {
+    "fd_norm": 0.040833623149438836,
+    "wrong_max_abs_diff": 0.06007151146123567,
+    "wrong_rel_diff": 1.471128614803343,
+    "wrong_diverges_as_expected": true,
+    "correct_max_abs_diff": 5.170848953878204e-09,
+    "correct_rel_diff": 1.2663213682886884e-07,
+    "correct_pass": true
+  },
+  "grad_Sigma_unsym_check": {
+    "unsym_max_abs_diff": 0.029201777678299404,
+    "unsym_rel_diff": 0.7151405000587295,
+    "pass": false
+  },
+  "overall_pass": false,
+  "runtime_seconds": 0.0192410945892334
+}

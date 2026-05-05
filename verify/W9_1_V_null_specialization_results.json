@@ -1,0 +1,38 @@
+{
+  "DGP": {
+    "K": 12,
+    "partition": [
+      4,
+      4,
+      4
+    ],
+    "note": "block-diagonal A at (LOC, REM): A_REM,LOC = 0"
+  },
+  "sigma2_C_at_H0": 5.243953419646156e-14,
+  "A_REM_LOC_norm_at_H0": 0.0,
+  "gradient_structure_at_H0": {
+    "grad_A_REM_LOC_norm": 1.3171701064813473e-15,
+    "grad_A_REM_REM_norm": 1.286222201583598e-15,
+    "grad_A_LOC_LOC_norm": 0.0,
+    "grad_A_LOC_REM_norm": 0.0,
+    "grad_Sigma_norm": 9.698476465050113e-18
+  },
+  "V_0_seed_2026": {
+    "V_0": 1.4872682763559234e-29,
+    "V_0_AA": 1.4854438827972457e-29,
+    "V_0_ff": 1.824393558677786e-32,
+    "V_0_AA_dominance": 0.9987733258433052
+  },
+  "V_0_across_seeds": [
+    1.4872682763559234e-29,
+    1.1941354125762052e-29,
+    2.3582044164147118e-30
+  ],
+  "V_0_well_defined": true,
+  "effective_grad_A_dimension_at_H0": 32,
+  "total_grad_A_dimension": 144,
+  "reduction_ratio": 0.2222222222222222,
+  "Theorem_5_threshold_T1000_alpha05": 2.0061368690909498e-16,
+  "Theorem_5_threshold_T1000_alpha01": 2.8366409468118843e-16,
+  "runtime_seconds": 0.7306504249572754
+}

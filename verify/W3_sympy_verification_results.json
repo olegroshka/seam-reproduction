@@ -1,0 +1,103 @@
+{
+  "verification_target": "Theorem 2 cluster decomposition identity",
+  "tool": "sympy 1.14.0 (exact rational) + numpy (random numerical)",
+  "sympy_instances": [
+    {
+      "label": "K=6, blocks=(2,2,2): J=2 LOC + REM",
+      "K": 6,
+      "block_sizes": [
+        2,
+        2,
+        2
+      ],
+      "sigma2_C_T1": 0.11835865312042591,
+      "sigma2_C_T2_total": 0.11835865312042591,
+      "diag_contribs": {
+        "LOC0_REM": 0.027523581573044884,
+        "LOC1_REM": 0.06606162558584586
+      },
+      "cross_total": 0.024773445961535166,
+      "cross_pairs": {
+        "LOC0_LOC1": 0.012386722980767583,
+        "LOC1_LOC0": 0.012386722980767583
+      },
+      "residual_str": "0",
+      "identity_passes": true,
+      "seed": 1001
+    },
+    {
+      "label": "K=8, blocks=(2,2,4): asymmetric LOC",
+      "K": 8,
+      "block_sizes": [
+        2,
+        2,
+        4
+      ],
+      "sigma2_C_T1": 0.16200284445839946,
+      "sigma2_C_T2_total": 0.16200284445839946,
+      "diag_contribs": {
+        "LOC0_REM": 0.05604513275374842,
+        "LOC1_REM": 0.09607183193978264
+      },
+      "cross_total": 0.009885879764868422,
+      "cross_pairs": {
+        "LOC0_LOC1": 0.004942939882434211,
+        "LOC1_LOC0": 0.004942939882434211
+      },
+      "residual_str": "0",
+      "identity_passes": true,
+      "seed": 1002
+    },
+    {
+      "label": "K=8, blocks=(2,2,2,2): J=3 LOC + REM",
+      "K": 8,
+      "block_sizes": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "sigma2_C_T1": 0.07168857640975329,
+      "sigma2_C_T2_total": 0.07168857640975329,
+      "diag_contribs": {
+        "LOC0_REM": 0.012925091816680275,
+        "LOC1_REM": 0.021468842888392497,
+        "LOC2_REM": 0.03037921346789254
+      },
+      "cross_total": 0.006915428236787983,
+      "cross_pairs": {
+        "LOC0_LOC1": -0.0005493447258867488,
+        "LOC0_LOC2": 0.0022967548296381657,
+        "LOC1_LOC0": -0.0005493447258867488,
+        "LOC1_LOC2": 0.0017103040146425742,
+        "LOC2_LOC0": 0.0022967548296381657,
+        "LOC2_LOC1": 0.0017103040146425742
+      },
+      "residual_str": "0",
+      "identity_passes": true,
+      "seed": 1003
+    }
+  ],
+  "vanishing_condition_test": {
+    "M_LOC1_LOC2_max": "0",
+    "M_LOC2_LOC1_max": "0",
+    "cross_total_str": "0",
+    "vanishing_passes": true
+  },
+  "numerical_random_test": {
+    "K": 12,
+    "block_sizes": [
+      4,
+      4,
+      4
+    ],
+    "N_total": 24,
+    "sigma2_C_T1": 7.353631710424668,
+    "sigma2_C_T2_total": 7.3536317104246125,
+    "cross_total": 1.0453324610887595,
+    "rel_error_T1_T2": 7.488417178051424e-15,
+    "numerical_pass": true
+  },
+  "overall_pass": true,
+  "runtime_seconds": 0.5369353294372559
+}

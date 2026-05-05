@@ -1,0 +1,53 @@
+{
+  "design": "D4",
+  "spec_version": "v2",
+  "results": {
+    "K_LOC=4 K_REM=4 (8 total)": {
+      "K_LOC": 4,
+      "K_REM": 4,
+      "sigma2_C_true": 0.9959847075114368,
+      "mc_mean": 1.0088717453986649,
+      "rel_err": 0.012938991723505086
+    },
+    "K_LOC=4 K_REM=8": {
+      "K_LOC": 4,
+      "K_REM": 8,
+      "sigma2_C_true": 0.9578476637594399,
+      "mc_mean": 0.9688902473870797,
+      "rel_err": 0.011528538457043401
+    },
+    "K_LOC=8 K_REM=4": {
+      "K_LOC": 8,
+      "K_REM": 4,
+      "sigma2_C_true": 1.465956637998703,
+      "mc_mean": 1.475003829701409,
+      "rel_err": 0.006171527498287411
+    },
+    "K_LOC=8 K_REM=8": {
+      "K_LOC": 8,
+      "K_REM": 8,
+      "sigma2_C_true": 1.930605370361156,
+      "mc_mean": 1.9331689342991396,
+      "rel_err": 0.0013278549709534644
+    },
+    "K_LOC=12 K_REM=4": {
+      "K_LOC": 12,
+      "K_REM": 4,
+      "sigma2_C_true": 1.3289379924133065,
+      "mc_mean": 1.3527490474730206,
+      "rel_err": 0.017917355960660044
+    },
+    "K_LOC=4 K_REM=12": {
+      "K_LOC": 4,
+      "K_REM": 12,
+      "sigma2_C_true": 0.609262120998778,
+      "mc_mean": 0.6280264983036585,
+      "rel_err": 0.030798529332694558
+    }
+  },
+  "acceptance": {
+    "C4_1_rel_err_lt_5pct": true
+  },
+  "verdict": "PASS",
+  "runtime_seconds": 2.1838886737823486
+}

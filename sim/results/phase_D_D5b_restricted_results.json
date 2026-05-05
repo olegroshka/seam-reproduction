@@ -1,0 +1,13 @@
+{
+  "design": "D5b-restricted",
+  "spec_version": "v2",
+  "note": "\u03a3_\u03b5 = \u03c3\u00b2_\u03b5 I (isotropic); P3 holds in this commuting sub-case (W4 HS-W4.4 FIRED in tested form)",
+  "sigma2_C_true": 0.02646856761954784,
+  "mc_mean": 0.026889886495742824,
+  "rel_err": 0.015917705946574465,
+  "acceptance": {
+    "C5b_restricted": true
+  },
+  "verdict": "PASS",
+  "runtime_seconds": 1.1165435314178467
+}

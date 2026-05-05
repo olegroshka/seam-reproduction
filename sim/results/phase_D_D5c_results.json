@@ -1,0 +1,46 @@
+{
+  "design": "D5c",
+  "spec_version": "v2",
+  "results": {
+    "small \u03c1 boundary": {
+      "sigma2_val": 1.0,
+      "rho_val": 0.05,
+      "sigma2_C_true": 0.07091620166337732,
+      "mc_mean": 0.07133120097198634,
+      "rel_err": 0.005851967517647343
+    },
+    "mid \u03c1": {
+      "sigma2_val": 1.0,
+      "rho_val": 0.3,
+      "sigma2_C_true": 0.05506523159570184,
+      "mc_mean": 0.05633332691126459,
+      "rel_err": 0.0230289654436272
+    },
+    "high \u03c1": {
+      "sigma2_val": 1.0,
+      "rho_val": 0.6,
+      "sigma2_C_true": 0.07347306267155684,
+      "mc_mean": 0.07402714095703197,
+      "rel_err": 0.007541243897127293
+    },
+    "mid \u03c1 scaled \u03c3\u00b2": {
+      "sigma2_val": 2.0,
+      "rho_val": 0.5,
+      "sigma2_C_true": 0.08828139068412932,
+      "mc_mean": 0.09057251312167795,
+      "rel_err": 0.025952495988041935
+    },
+    "large \u03c1 boundary": {
+      "sigma2_val": 1.0,
+      "rho_val": 0.95,
+      "sigma2_C_true": 0.06279877548511877,
+      "mc_mean": 0.06467938189843987,
+      "rel_err": 0.029946545912614937
+    }
+  },
+  "acceptance": {
+    "C5c": true
+  },
+  "verdict": "PASS",
+  "runtime_seconds": 1.4834718704223633
+}
