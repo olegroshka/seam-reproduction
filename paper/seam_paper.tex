@@ -86,7 +86,7 @@ Within VAR theory, L\"utkepohl \cite{Lutkepohl2005} develops the general estimat
 
 The two predictors compared by $\sigma^2_C$ --- joint conditioning on $f_{t-1}$ versus restricted conditioning on $f_{\REM, t-1}$ --- are precisely the predictors underlying the standard Granger-causality framework \cite[Ch.~2.3, Ch.~7]{Lutkepohl2005}: $\sigma^2_C > 0$ if and only if the LOCAL components Granger-cause REMAINDER, and Theorem~\ref{thm:T5}'s Wald test specializes the standard Granger non-causality test to the LOCAL/REMAINDER partition. Geweke \cite{Geweke1982} introduced a quantitative measure of Granger-causality strength via a log-determinant ratio of prediction-error variances; $\sigma^2_C$ is in the same conceptual family but uses a trace-difference (mean-squared-error scale) rather than entropy scale, and admits a closed-form Schur-complement expression at the LOCAL/REMAINDER partition with within-block AR(1) restriction --- a setting Geweke's framework does not specialize to. Chudik and Pesaran \cite{ChudikPesaran2015} address heterogeneous panel forecasting with weakly exogenous regressors; the present $\sigma^2_C$ result complements this literature by characterizing the partition-level forecast-variance gap directly. The specific combination --- closed-form $\sigma^2_C$, cluster-decomposed along the LOCAL partition, with the within-REMAINDER-AR(1)-BLP baseline --- does not appear in the prior literature to our knowledge.
 
-\paragraph{Paper structure.} \S\ref{sec:setup} establishes notation. \S\ref{sec:main} states Theorem~\ref{thm:T1}, the cluster decomposition (Theorem~\ref{thm:T2}), and the structural corollaries. \S\ref{sec:limiting} specializes under five regimes (Propositions~\ref{prop:P1}--\ref{prop:P5}). \S\ref{sec:sampling} develops the sampling theory (Theorems~\ref{thm:T3},~\ref{thm:T4},~\ref{thm:T5} and Proposition~\ref{prop:P6}). \S\ref{sec:sim} verifies via simulation. \S\ref{sec:disc} discusses connections and open questions. Full proofs are in the appendices.
+\paragraph{Paper structure.} \S\ref{sec:setup} establishes notation. \S\ref{sec:main} states Theorem~\ref{thm:T1}, the cluster decomposition (Theorem~\ref{thm:T2}), and the structural corollaries. \S\ref{sec:varp} extends the framework to VAR$(p)$ (Theorems~\ref{thm:T1p}--\ref{thm:T5p}). \S\ref{sec:sampling} develops the sampling theory for VAR$(1)$ (Theorems~\ref{thm:T3}--\ref{thm:T5} and Proposition~\ref{prop:P6}). \S\ref{sec:sim} verifies via simulation. \S\ref{sec:disc} discusses connections and open questions. Five named limiting regimes for VAR$(1)$ (Propositions~\ref{prop:P1}--\ref{prop:P5}) appear in Appendix~\ref{app:C}; VAR$(p)$ derivations and numerical-verification tables in Appendix~\ref{app:VARp}; other proofs in Appendices~\ref{app:A}--\ref{app:G}; full simulation methodology in Appendix~\ref{app:H}.
 
 % ════════════════════════════════════════════════════════════════════════════
 \section{Setup}\label{sec:setup}
@@ -222,52 +222,54 @@ Direct evaluation of (\ref{eq:T1}) requires only the REMAINDER-block submatrices
 \end{remark}
 
 % ════════════════════════════════════════════════════════════════════════════
-\section{Limiting cases}\label{sec:limiting}
+\section{Extension to VAR$(p)$}\label{sec:varp}
 % ════════════════════════════════════════════════════════════════════════════
 
-This section presents closed-form simplifications of $\sigma^2_C$ under five named structural regimes. Each Proposition specializes Theorem~\ref{thm:T2} under an assumption on $A$ (Propositions~\ref{prop:P1}, \ref{prop:P2}, \ref{prop:P3}, \ref{prop:P5}) or $\Sigma_f$ (Proposition~\ref{prop:P4}). Proofs are in Appendix~\ref{app:C}.
+The closed-form identity, the cluster decomposition, and the sampling theory all lift to VAR$(p)$ for $p \ge 2$ via the companion-form embedding. The graphical-model conditional-independence interpretation, however, becomes a strictly richer condition. Derivations and numerical verification are in Appendix~\ref{app:VARp}.
 
-\begin{proposition}[Block-diagonal $A$]\label{prop:P1}
-If $A_{\REM, \LOC_j} = \mathbf{0}$ for all $j$, then $\sigma^2_C = 0$.
-\end{proposition}
+\paragraph{Setup.} Let $f_t = \sum_{h=1}^{p} A_h f_{t-h} + \varepsilon_t$ be a stable $K$-dim VAR$(p)$ with $\varepsilon_t \stackrel{iid}{\sim} (\mathbf{0}, \Sigmae)$ and companion-form transition $\widetilde A \in \mathbb{R}^{Kp \times Kp}$ of spectral radius $< 1$. Write $R(h) := \E[f_t f_{t-h}^\top]$ (so $R(0) = \Sigmaf$), and define the $K_\REM p \times K_\REM p$ block-Toeplitz REMAINDER autocovariance $\Gamma$ with $(i, j)$-block $(R(|i-j|))_\REM$ if $j \ge i$ and $(R(i-j))_\REM^\top$ otherwise, alongside $C := [(R(1))_\REM, \ldots, (R(p))_\REM] \in \mathbb{R}^{K_\REM \times K_\REM p}$. The joint VAR$(p)$ predictor of $f_{\REM, t}$ has forecast-error covariance $(\Sigmae)_\REM$; the restricted predictor --- best-linear-predictor on $(f_{\REM, t-1}, \ldots, f_{\REM, t-p})$ --- has forecast-error covariance $(\Sigmaf)_\REM - C \Gamma^{-1} C^\top$. The estimand $\sigma^{2,(p)}_C$ is defined as in (\ref{eq:estimand}).
 
-This is the "no cross-block coupling" baseline. It supplies the null hypothesis tested in \S\ref{sec:test} (Theorem~\ref{thm:T5}). The converse holds unconditionally under (A1)--(A3): the full LOC Schur complement $\Mloc := (\Sigmaf)_\LOC - (\Sigmaf)_{\LOC, \REM} (\Sigmaf)_\REM^{-1} (\Sigmaf)_{\REM, \LOC}$ is positive definite (since $\Sigmaf \succ 0$ by (A1) and (A2), the partitioned-inverse identity gives $\Mloc^{-1} = (\Sigmaf^{-1})_{\LOC, \LOC} \succ 0$), and the bilinear form $\sigma^2_C = \Ntot^{-1} \trace[A_{\REM, \LOC} \Mloc A_{\REM, \LOC}^\top]$ vanishes iff $A_{\REM, \LOC} = \mathbf{0}$. No further genericity assumption on the diagonal Schur blocks is needed.
+\begin{theorem}[Closed form, VAR$(p)$]\label{thm:T1p}
+Under (A1)--(A3) extended to VAR$(p)$,
+\begin{equation}\label{eq:T1p}
+\sigma^2_C{}^{(p)} = \frac{1}{\Ntot} \trace\!\left[\sum_{h=1}^{p} (A_h R(h)^\top)_\REM - C\,\Gamma^{-1}\,C^\top\right].
+\end{equation}
+For $p = 1$, $C = (A\Sigmaf)_\REM$ and $\Gamma = (\Sigmaf)_\REM$, recovering Theorem~\ref{thm:T1}.
+\end{theorem}
 
-\begin{proposition}[Rank-one cross-block coupling]\label{prop:P2}
-Suppose $A_{\REM, \LOC} = u v^\top$ for $u \in \mathbb{R}^{K_\REM}$, $v \in \mathbb{R}^{K_{\LOC, \mathrm{total}}}$, and $A_{\REM, \REM} = \mathbf{0}$. Then
-\begin{equation*}
-\sigma^2_C = \frac{\|u\|^2}{\Ntot} \cdot v^\top \Mloc \, v,
-\end{equation*}
-where $\Mloc := (\Sigma_f)_\LOC - (\Sigma_f)_{\LOC, \REM} (\Sigma_f)_\REM^{-1} (\Sigma_f)_{\REM, \LOC}$ is the LOC$\times$LOC Schur complement. Under joint Gaussianity, $v^\top \Mloc v = \Var(v^\top f_\LOC \mid f_\REM)$.
-\end{proposition}
+The proof follows the four-step argument of Theorem~\ref{thm:T1} verbatim, with the VAR$(p)$ Yule-Walker block identity $(\Sigmae)_\REM = (\Sigmaf)_\REM - \sum_h (A_h R(h)^\top)_\REM$ replacing the single-step Lyapunov substitution. The right-hand side is the trace of the Schur complement of $\Gamma$ in the $2 \times 2$ block matrix involving $C$, $C^\top$, and $\sum_h (A_h R(h)^\top)_\REM$ under the joint VAR$(p)$ stationary law.
 
-The rank-one form factorizes the cross-block dependence into a single REM-direction $u$ and a single LOC-direction $v$. This regime is mathematically natural when REMAINDER is "downstream" of a single latent signal extracted from LOCAL.
+\paragraph{Companion-form representation.} $\sigma^{2,(p)}_C$ admits an equivalent expression as the trace of Theorem~\ref{thm:T1}'s Schur complement applied at the companion VAR$(1)$ in the $Kp$-dimensional state $F_t = (f_t, f_{t-1}, \ldots, f_{t-p+1})$ with the lifted partition $\REM_\text{comp} := \{(\REM, t-h) : h = 0, \ldots, p-1\}$. The companion-form innovation covariance is rank-deficient ($B \Sigmae B^\top$ with $B = (I_K, \mathbf{0}, \ldots, \mathbf{0})^\top$, violating (A2) at the lifted system), but the Schur form requires only $(\Sigma_F)_{\REM_\text{comp}} \succ 0$ --- equal to $\Gamma$, automatic under (A1)+(A2). Both representations agree to machine precision in all tested regimes (Appendix~\ref{app:VARp}, Table~\ref{tab:varp_E_summary}).
 
-\begin{proposition}[Symmetric $A$, isotropic $\Sigma_\varepsilon$]\label{prop:P3}
-Suppose $A = A^\top$ and $\Sigma_\varepsilon = \sigma_\varepsilon^2 I_K$. Then $\Sigma_f = \sigma_\varepsilon^2 (I_K - A^2)^{-1}$, and in the eigenbasis $A = U \Lambda U^\top$ with $P_\REM := U^\top E_\REM$,
-\begin{multline*}
-\sigma^2_C = \frac{\sigma_\varepsilon^2}{\Ntot} \Bigl\{ \trace[P_\REM^\top \Lambda^2 (I - \Lambda^2)^{-1} P_\REM] \\
-- \trace[P_\REM^\top \Lambda (I - \Lambda^2)^{-1} P_\REM (P_\REM^\top (I - \Lambda^2)^{-1} P_\REM)^{-1} P_\REM^\top (I - \Lambda^2)^{-1} \Lambda P_\REM] \Bigr\}.
-\end{multline*}
-\end{proposition}
+\begin{theorem}[Cluster decomposition, VAR$(p)$]\label{thm:T2p}
+With $\widetilde M^\text{comp}(a, b) := (\Sigma_F)_{a,b} - (\Sigma_F)_{a, \REM_\text{comp}} (\Sigma_F)_{\REM_\text{comp}}^{-1} (\Sigma_F)_{\REM_\text{comp}, b}$,
+\begin{equation}\label{eq:T2p}
+\sigma^2_C{}^{(p)} = \sum_{j=1}^{J} \sigma^2_{C, \LOC_{j,\text{comp}} \leftrightarrow \REM_\text{comp}} + \sigma^{2,\text{comp}}_{C, \mathrm{cross}},
+\end{equation}
+where the per-LOC diagonal and cross terms are bilinear traces in $\widetilde M^\text{comp}$ blocks against the $(\REM_\text{comp}, \LOC_{j,\text{comp}})$ sub-blocks of $\widetilde A$ (formulas in Appendix~\ref{app:VARp}).
+\end{theorem}
 
-The closed form requires $\Sigma_\varepsilon$ to commute with $A$; the isotropic case is the simplest sub-case. Modes with eigenvalue $|\lambda_k|$ near 1 and large REM-projection contribute most strongly. Unrestricted symmetric $A$ with general $\Sigma_\varepsilon$ does not admit a clean closed form (open question, \S\ref{sec:disc}).
+\begin{corollary}[Cross-term vanishing, VAR$(p)$]\label{cor:cond-indep-p}
+$\sigma^{2,\text{comp}}_{C, \mathrm{cross}} = 0$ for all admissible $\widetilde A$ iff $\widetilde M^\text{comp}(\LOC_{j,\text{comp}}, \LOC_{k,\text{comp}}) = \mathbf{0}$ for every $j \ne k$. Under joint Gaussianity, this is REMAINDER-comp separating LOCAL-comp blocks in the $(Kp)$-dimensional companion-state conditional-independence graph of $F_t$.
+\end{corollary}
 
-\begin{proposition}[Block-equicorrelated REMAINDER]\label{prop:P4}
-Suppose $(\Sigma_f)_\REM = \sigma^2 (I_n + \rho J_n)$ with $n = K_\REM$, $J_n = \mathbf{1}_n \mathbf{1}_n^\top$, $\sigma^2 > 0$, $\rho \in (-1/(n-1), 1)$. Then by Sherman-Morrison, $(\Sigma_f)_\REM^{-1} = \sigma^{-2} (I_n - \rho/(1 + n\rho) \cdot J_n)$, and
-\begin{equation*}
-M(\LOC_j, \LOC_j) = (\Sigma_f)_{\LOC_j, \LOC_j} - \sigma^{-2} (\Sigma_f)_{\LOC_j, \REM} (\Sigma_f)_{\REM, \LOC_j} + \frac{\rho}{\sigma^2 (1 + n\rho)} r_j r_j^\top,
-\end{equation*}
-where $r_j := (\Sigma_f)_{\LOC_j, \REM} \mathbf{1}_n$. Substituting into (\ref{eq:T2}) gives explicit $\sigma^2_C$ in $(\sigma^2, \rho, A_{\REM, \LOC}, (\Sigma_f)_\LOC)$.
-\end{proposition}
+\begin{remark}[Contemporaneous CI is insufficient for $p \ge 2$]\label{rem:contemp-CI-fail}
+The VAR$(1)$ Corollary~\ref{cor:cond-indep} statement --- ``$\sigma^2_{C, \mathrm{cross}}$ vanishes structurally iff REM separates LOC blocks in the contemporaneous $\Sigmaf$ conditional-independence graph'' --- does \emph{not} extend to $p \ge 2$. Finite $p$-lag conditioning on REM leaks dependence through unobserved past REM history. Even DGPs engineered with strong structural restrictions (no LOC--LOC coupling at any lag, block-diagonal $\Sigmae$, AR$(1)$-within-REM dynamics, REM appearing only at lag~1 in all blocks) generically retain a non-zero $\sigma^{2,\text{comp}}_{C, \mathrm{cross}}$ of order $1$--$10\%$ of $\sigma^{2,(p)}_C$. The $(Kp)$-dim CI graph is the load-bearing object; the contemporaneous $K$-dim CI graph is a VAR$(1)$-specific simplification. Empirical evidence in Appendix~\ref{app:VARp}.
+\end{remark}
 
-The equicorrelated structure separates $(\Sigma_f)_\REM^{-1}$ into an isotropic part plus a rank-one correction; the latter manifests as the $r_j r_j^\top$ term in $M(\LOC_j, \LOC_j)$.
+\paragraph{Sampling theory.} The plug-in $\widehat\sigma^{2,(p)}_C := \varphi^{(p)}(\widehat A_{1,T}, \ldots, \widehat A_{p,T}, \widehat\Sigmaf{}_{,T})$ is $\sqrt{T}$-consistent and asymptotically normal by the delta-method argument of Theorems~\ref{thm:T3}--\ref{thm:T4}, applied to the smooth functional $\varphi^{(p)}$ on the OLS-VAR$(p)$ parameter manifold. The asymptotic variance $V^{(p)} = (\nabla\varphi^{(p)})^\top \Omega^{(p)} (\nabla\varphi^{(p)})$ uses the joint asymptotic covariance of $(\mathrm{vec}\,\widehat A_1, \ldots, \mathrm{vec}\,\widehat A_p, \vech\widehat\Sigmaf)$ from \cite[Prop.~3.2, Ch.~3.4]{Lutkepohl2005}. Near $\partial\{\Gamma \succ 0\}$, $V^{(p)} \sim 1/\lambda_{\min}(\Gamma)^4$ --- the same exponent as VAR$(1)$, with $\Gamma$ replacing $(\Sigmaf)_\REM$. The finite-sample bias retains the leading $b/T + o(T^{-1})$ form.
 
-\begin{proposition}[Sparse $A$ bound]\label{prop:P5}
-$\sigma^2_C \le \Ntot^{-1} \cdot \|A_{\REM, \LOC}\|_F^2 \cdot [\max_j \lambda_{\max}(M(\LOC_j, \LOC_j)) + (J - 1) \max_{j \ne k} \|M(\LOC_j, \LOC_k)\|_{\mathrm{op}}]$. If $A_{\REM, \LOC}$ has support on at most $s$ entries, $\sigma^2_C \le (s/\Ntot) \cdot \|A_{\REM, \LOC}\|_\infty^2 \cdot [\cdots]$ with the same bracketed factor.
-\end{proposition}
+\begin{theorem}[Wald test, VAR$(p)$]\label{thm:T5p}
+Stack $\eta_T := \mathrm{vec}(\widehat A_{1, \REM, \LOC, T}, \ldots, \widehat A_{p, \REM, \LOC, T}) \in \mathbb{R}^{p K_\REM K_\LOC}$. Under $H_0: A_{h, \REM, \LOC_j} = \mathbf{0}$ for all $h, j$,
+\begin{equation}\label{eq:T5p}
+W_T^{(p)} := T \cdot \eta_T^\top \!\left[\widehat M_\LOC^{(p)} \otimes \widehat{(\Sigmae)}_\REM^{-1}\right] \eta_T \xrightarrow{d} \chi^2(p K_\REM K_\LOC),
+\end{equation}
+where $\widehat M_\LOC^{(p)} = ((\widehat\Gamma_p^{-1})_{\LOC \times \text{all lags},\, \LOC \times \text{all lags}})^{-1}$ is the Schur complement of $(\widehat\Gamma_p)_\REM$ at the LOC sub-block of the OLS-regressor second-moment matrix $\widehat\Gamma_p$. For $p = 1$, $\widehat M_\LOC^{(p)} = \widehat\Mloc$ and the test reduces to Theorem~\ref{thm:T5}.
+\end{theorem}
 
-This bound is informative for understanding which sparse coupling patterns produce large $\sigma^2_C$. The bracketed factor is the "amplification factor" from the LOCAL conditional-covariance structure given REM. Tightness depends on alignment of $A_{\REM, \LOC_j}$ with top eigendirections of $M(\LOC_j, \LOC_j)$.
+\paragraph{Numerical verification.} Theorem~\ref{thm:T1p} is verified to machine precision across $p \in \{2, 3, 5, 7, 10\}$ and $K \in \{4, 6, 8, 12\}$ (25/25 cells, max residual $9 \times 10^{-15}$), and certified-exact via Sympy rational arithmetic at $K=3, p=2$ (Appendix~\ref{app:VARp_tables}). Companion-form representation matches the direct closed form to $10^{-14}$ across the same grid. Sampling theory at $p=2$, $K=6$: $\sqrt{T}$-rate consistency with $\sqrt{T} \cdot \mathrm{SD}$ ratio $1.135$; CI$95$ coverage $96.0\%$ at $T = 2000$. Wald test (Theorem~\ref{thm:T5p}) empirical size: $0.0525$ at $T=1000$, $0.0450$ at $T=2000$ (nominal $0.05$). Near-degeneracy log-log slope $-4.0000$. Closed form computes in sub-millisecond at $K=30$. Reproduction scripts: \path{verify/var_p/}.
+
+\paragraph{Limiting cases (VAR$(1)$).} Five named structural regimes of the VAR$(1)$ baseline (block-diagonal $A$, rank-one cross-coupling, symmetric $A$ with isotropic $\Sigmae$, block-equicorrelated REMAINDER, sparse-$A$ bound) admit closed-form simplifications or bounds; statements, discussion, and proofs appear in Appendix~\ref{app:C}. The analogous specializations for VAR$(p)$ are left to future work.
 
 % ════════════════════════════════════════════════════════════════════════════
 \section{Sampling theory}\label{sec:sampling}
@@ -361,33 +363,7 @@ Proof of Theorem~\ref{thm:T5} via standard Wald-test asymptotics on the OLS-VAR 
 \section{Simulation verification}\label{sec:sim}
 % ════════════════════════════════════════════════════════════════════════════
 
-We verify the closed-form expressions and asymptotic theory across a suite of synthetic VAR(1) DGPs spanning $K \in \{8, 12\}$, partition shapes $(K_{\LOC, \mathrm{total}}, K_\REM)$ ranging $(4, 4)$ to $(12, 4)$, $\sigma_{\mathrm{cross}} \in [0, 0.8]$, and $T \in \{50, \ldots, 20000\}$. Pre-registered acceptance criteria (DGP designs and threshold values fixed before simulations) appear in Appendix~\ref{app:H}. Designs D1, D2, D3, D5, and D6 use $K = 8$ with partition $(K_{\LOC_1}, K_{\LOC_2}, K_\REM) = (2, 2, 4)$; D4 varies the partition shape across six $(K_\LOC, K_\REM)$ settings to test block-size-ratio sensitivity; D7 uses $K = 12$ with partition $(4, 4, 4)$ to test the Wald-test asymptotics under a higher-dimensional partition.
-
-\paragraph{D1, D4 (Theorem~\ref{thm:T1}).} Theorem~\ref{thm:T1} closed form tracks empirical MC mean to within $0.5\%$ relative error across $\sigma^2_C > 0.1$ at $T = 2000$ ($n_\mathrm{rep} = 100$); in the small-$\sigma^2_C$ regime ($\sigma^2_C \le 0.1$), Proposition~\ref{prop:P6} finite-sample bias dominates and relative error is up to $5.1\%$. Block-size ratio sensitivity (six $(K_\LOC, K_\REM)$ settings): max relative error $3.08\%$.
-
-\paragraph{D2 (Theorem~\ref{thm:T3}).} At $T = 5000$ with $n_\mathrm{rep} = 200$, relative error of $\widehat{\sigma}^2_{C, T}$ to $\sigma^2_C$ is $0.19\%$ (PASS at $< 2\%$). $\sqrt{T} \cdot \mathrm{SD}(\widehat{\sigma}^2_C)$ constancy across $T \in \{1000, 2000, 5000\}$ has max/min ratio $1.107 < 1.15$ --- consistency at standard parametric $\sqrt{T}$ rate.
-
-\paragraph{D3 (Theorem~\ref{thm:T4}).} CI coverage at $T = 1000$ ($n_\mathrm{rep} = 1000$) using $\widehat{V}$ from the closed-form delta-method expression: $94.3\%$ at nominal $0.95$ (PASS in $[92\%, 98\%]$). Small-$T$ coverage at $T = 100$: $93.3\%$ (PASS in $[85\%, 100\%]$, allowing finite-sample under- or over-coverage). Extended T-sweep at $T \in \{1000, ..., 20000\}$ ($n_\mathrm{rep} = 1000$): empirical $T \cdot \mathrm{Var}(\widehat{\sigma}^2_C)$ converges within $\pm 2$ MC SE of $V_{\mathrm{analytic}} = 6.66$ at $T = 20000$ (relative error $6.3\%$); systematic $5$--$7\%$ gap below $V_{\mathrm{analytic}}$ across the T-sweep is consistent with a higher-order $V + b_{\mathrm{var}}/T$ finite-T correction.
-
-\paragraph{D5 (Propositions~\ref{prop:P2}--\ref{prop:P4}).} D5a (rank-one cross-block, Proposition~\ref{prop:P2}): relative error $2.46\%$. D5b (symmetric A + isotropic noise, Proposition~\ref{prop:P3}): relative error $1.59\%$. D5c (block-equicorrelated REM, Proposition~\ref{prop:P4}, five $(\sigma^2, \rho)$ settings including $\rho \in \{0.05, 0.95\}$ boundary): max relative error $3.00\%$. All PASS at $< 5\%$.
-
-\paragraph{D6 + V3.a (\S\ref{sec:near-deg}).} Direct MC verification of $V \sim 1/\lambda_{\min}^4$ within Lyapunov-consistent DGPs is structurally infeasible: as $\lambda_{\min}((\Sigma_f)_\REM) \to 0$, the Lyapunov constraint $\Sigma_\varepsilon = \Sigma_f - A \Sigma_f A^\top \succ 0$ forces $A$'s scale toward zero, killing $\sigma^2_C$ amplification at the same rate that $V$ scales. The structural verification is V3.a: treat $(A, \Sigma_f)$ as separate parameters (not Lyapunov-consistent) to isolate the $\lambda_{\min}$-dependence of $V$ as a functional fact. Direct computation of $V = (\nabla \varphi)^\top \Omega (\nabla \varphi)$ using analytical $\Omega$ formulas at $\lambda_{\min} \in \{10^{-2}, 10^{-3}, 10^{-4}\}$ gives $V = 2.95 \times 10^4$, $2.98 \times 10^8$, and $2.99 \times 10^{12}$ respectively. The pair-ratio $V(10^{-3}) / V(10^{-2}) = 1.0104 \times 10^4$ matches the predicted ratio of $10^4$ to within $1\%$; the 3-point regression of $\log V$ on $\log \lambda_{\min}$ gives $d_V = 4.0029$ with $R^2 = 1.0000$, confirming the predicted exponent $d = 4$. The structural verification of $V \sim 1/\lambda_{\min}^4$ is V3.a (primary); D6 documents that Lyapunov-consistent MC verification of this scaling is structurally infeasible --- a finite-sample observation, not a contradiction of \S\ref{sec:near-deg}.
-
-\paragraph{D7 (Theorem~\ref{thm:T5}).} Type I error rate at $H_0: A_{\REM, \LOC} = 0$ ($n_\mathrm{rep} = 2000$, $K = 12$, $\chi^2_{32}$ reference):
-\begin{center}
-\begin{tabular}{lll}
-\toprule
-$T$ & emp.\ $\alpha$ at nominal $0.05$ & mean $W_T$ vs $\E[\chi^2_{32}] = 32$ \\
-\midrule
-$200$ & $0.107$ (over-rejection) & $35.0$ ($+9\%$) \\
-$500$ & $0.076$ & $33.4$ ($+4\%$) \\
-$1000$ & $0.058$ (PASS) & $32.5$ ($+1.6\%$) \\
-$2000$ & $0.056$ (PASS) & $32.1$ ($+0.4\%$) \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-At $T \ge 1000$, empirical size is within $\pm 50\%$ of nominal and the Wald-statistic mean converges to $\chi^2_{32}$ mean. At smaller $T$, standard finite-sample over-rejection of Wald statistics on OLS-VAR coefficients (Bao-Ullah finite-sample bias of $\widehat{A}_T$) is observable; bias-corrected $\widehat{A}_T$ recovers nominal size at smaller $T$. Power at $T = 1000$ ($n_\mathrm{rep} = 1000$) increases monotonically with coupling magnitude; rejection rate reaches $1.000$ at $\sigma^2_C \ge 0.022$. Boundary-regime power: $0.094$ at $\sigma^2_C = 2.1 \times 10^{-4}$; $0.154$ at $8.4 \times 10^{-4}$; $0.575$ at $3.4 \times 10^{-3}$; $1.000$ at $1.4 \times 10^{-2}$. For $\sigma^2_C$ scales near $10^{-3}$ the test's power at $T = 1000$ is approximately $15\%$; panels with $T$ near $100$ and $\sigma^2_C$ near $10^{-3}$ fall below the test's operational range. Theorem~\ref{thm:T5}'s primary use case is therefore prospective application to panels with $T \ge 500$ where $\sigma^2_C$ is at scales the test can detect; on shorter panels, $\widehat{\sigma}^2_C$ from Theorem~\ref{thm:T1} remains useful as a magnitude estimate independent of testability.
+A pre-registered simulation suite (Appendix~\ref{app:H}, designs D1--D7) verifies the closed-form identities and asymptotic theory across $K \in \{8, 12\}$, partition shapes ranging $(4, 4)$ to $(12, 4)$, $\sigma_{\mathrm{cross}} \in [0, 0.8]$, and $T \in \{50, \ldots, 20000\}$. Headline results: Theorem~\ref{thm:T1} closed form matches empirical MC to within $0.5\%$ at $\sigma^2_C > 0.1$ across six block-size ratios (max $3.08\%$); $\widehat{\sigma}^2_C$ achieves $0.19\%$ rel.\ err.\ at $T = 5000$ with $\sqrt{T}\cdot\mathrm{SD}$ max/min ratio $1.107 < 1.15$ (Theorem~\ref{thm:T3}, $\sqrt{T}$-rate); delta-method CI coverage at $T = 1000$ is $94.3\%$ at nominal $0.95$ (Theorem~\ref{thm:T4}); Propositions~\ref{prop:P2}--\ref{prop:P4} closed forms agree at $\le 3\%$ rel.\ err.; the near-degeneracy V3.a parametric verification of $V \sim 1/\lambda_{\min}^4$ gives $d_V = 4.0029$ with $R^2 = 1.0000$. The Wald test (Theorem~\ref{thm:T5}) reaches nominal size at $T \ge 1000$ (empirical $\alpha = 0.058$ at nominal $0.05$, $K = 12$) and unit power for $\sigma^2_C \ge 1.4 \times 10^{-2}$. Full DGP specifications, per-design tables, and discussion of the Lyapunov-inconsistent verification path for D6 appear in Appendix~\ref{app:H}; VAR$(p)$ verification results (E1--E12) appear in Appendix~\ref{app:VARp}.
 
 % ════════════════════════════════════════════════════════════════════════════
 \section{Discussion}\label{sec:disc}
@@ -504,17 +480,29 @@ This lemma identifies subsystem-restricted $\sigC$ computations (a Shapley-style
 
 \paragraph{Symbolic + numerical verification record.} Sympy exact rational arithmetic verifies Theorem~\ref{thm:T2} at $K = 6$ blocks $(2, 2, 2)$, $K = 8$ blocks $(2, 2, 4)$ asymmetric, and $K = 8$ blocks $(2, 2, 2, 2)$ ($J = 3$): residual $0$ exactly. A vanishing-condition test with engineered $\Sigmaf$ block-diagonal at $(\LOC_1, \LOC_2, \REM)$ produces $M(\LOC_1, \LOC_2) = \mathbf{0}$ and $\sigma^2_{C, \mathrm{cross}} = 0$ exactly. Reproduction: \path{verify/thm2.py}.
 
-\section{Proofs of Propositions~\ref{prop:P1}--\ref{prop:P5}}\label{app:C}
+\section{Limiting cases for VAR$(1)$: statements and proofs}\label{app:C}
 
-\paragraph{Proof of Proposition~\ref{prop:P1} (block-diagonal $A$).} By Theorem~\ref{thm:T2} (T2a), $\sigma^2_{C, \LOC_j \leftrightarrow \REM} = 0$ for each $j$ since $A_{\REM, \LOC_j} = \mathbf{0}$. Each off-diagonal cross term in $\sigma^2_{C, \mathrm{cross}}$ likewise vanishes. Hence $\sigC = 0$. $\square$
+This appendix presents five named structural regimes under which $\sigma^2_C$ admits a closed-form simplification or bound, with statements and proofs combined. All results specialize Theorem~\ref{thm:T2} and assume (A1)--(A3) of the VAR$(1)$ baseline.
 
-\paragraph{Remark on the converse.} Under (A1)--(A3), the full LOC Schur complement $\Mloc$ is positive definite ($\Sigmaf \succ 0$ from stability and (A2) yields $\Mloc^{-1} = (\Sigmaf^{-1})_{\LOC, \LOC} \succ 0$ by the partitioned-inverse identity). The full bilinear representation
-\[
-\sigC = \frac{1}{\Ntot} \trace[A_{\REM, \LOC} \Mloc A_{\REM, \LOC}^\top]
-\]
-then yields $\sigC = 0 \iff A_{\REM, \LOC} = \mathbf{0}$ unconditionally. The diagonal-blocks-PD condition $M(\LOC_j, \LOC_j) \succ 0$ for each $j$ is implied by $\Mloc \succ 0$ but is not sufficient on its own --- it would still permit off-diagonal cross-term cancellation in $\sigC$. The load-bearing condition is $\Mloc \succ 0$, automatic under (A1)--(A3).
+\begin{proposition}[Block-diagonal $A$]\label{prop:P1}
+If $A_{\REM, \LOC_j} = \mathbf{0}$ for all $j$, then $\sigma^2_C = 0$.
+\end{proposition}
 
-\paragraph{Proof of Proposition~\ref{prop:P2} (rank-one cross-block coupling).} Partition $v = (v_1, \ldots, v_J)^\top$ conformably with the LOCAL partition, so $A_{\REM, \LOC_j} = u v_j^\top$. For diagonal contributions (T2a),
+This is the ``no cross-block coupling'' baseline and supplies the null hypothesis tested in \S\ref{sec:test} (Theorem~\ref{thm:T5}). The converse holds unconditionally: by the partitioned-inverse identity, $\Mloc^{-1} = (\Sigmaf^{-1})_{\LOC, \LOC} \succ 0$ since $\Sigmaf \succ 0$ under (A1)+(A2), and the bilinear form $\sigC = \Ntot^{-1} \trace[A_{\REM, \LOC} \Mloc A_{\REM, \LOC}^\top]$ vanishes iff $A_{\REM, \LOC} = \mathbf{0}$.
+
+\paragraph{Proof of Proposition~\ref{prop:P1}.} By Theorem~\ref{thm:T2} (T2a), $\sigma^2_{C, \LOC_j \leftrightarrow \REM} = 0$ for each $j$ since $A_{\REM, \LOC_j} = \mathbf{0}$. Each off-diagonal cross term in $\sigma^2_{C, \mathrm{cross}}$ likewise vanishes. $\square$
+
+\begin{proposition}[Rank-one cross-block coupling]\label{prop:P2}
+Suppose $A_{\REM, \LOC} = u v^\top$ for $u \in \mathbb{R}^{K_\REM}$, $v \in \mathbb{R}^{K_{\LOC, \mathrm{total}}}$, and $A_{\REM, \REM} = \mathbf{0}$. Then
+\begin{equation*}
+\sigma^2_C = \frac{\|u\|^2}{\Ntot} \cdot v^\top \Mloc \, v,
+\end{equation*}
+where $\Mloc$ is the LOC$\times$LOC Schur complement. Under joint Gaussianity, $v^\top \Mloc v = \Var(v^\top f_\LOC \mid f_\REM)$.
+\end{proposition}
+
+The rank-one form factorizes the cross-block dependence into a single REM-direction $u$ and a single LOC-direction $v$; the regime is natural when REMAINDER is ``downstream'' of a single latent signal extracted from LOCAL.
+
+\paragraph{Proof of Proposition~\ref{prop:P2}.} Partition $v = (v_1, \ldots, v_J)^\top$ conformably with the LOCAL partition, so $A_{\REM, \LOC_j} = u v_j^\top$. For diagonal contributions (T2a),
 \begin{equation*}
 \trace\!\left[u v_j^\top M(\LOC_j, \LOC_j) v_j u^\top\right] = (v_j^\top M(\LOC_j, \LOC_j) v_j) \cdot \trace(u u^\top) = \|u\|^2 \, v_j^\top M(\LOC_j, \LOC_j) v_j.
 \end{equation*}
@@ -528,7 +516,17 @@ Summing diagonal plus off-diagonal,
 \end{equation*}
 using $\Mloc[j, k] = M(\LOC_j, \LOC_k)$ in block notation. Dividing by $\Ntot$ gives the claim. The Gaussian-conditional-variance interpretation $v^\top \Mloc v = \Var(v^\top f_\LOC \mid f_\REM)$ follows from the standard joint-Gaussian conditional-covariance identity. $\square$
 
-\paragraph{Proof of Proposition~\ref{prop:P3} (symmetric $A$, isotropic $\Sigmae$).} For (\ref{eq:VAR1}) with $A = A^\top$ and $\Sigmae = \sigma_\varepsilon^2 I$, the discrete Lyapunov equation reduces to $\Sigmaf = A \Sigmaf A + \sigma_\varepsilon^2 I$. By $\rho(A^2) < 1$, the Neumann-series ansatz $\Sigmaf = \sigma_\varepsilon^2 \sum_{n \ge 0} A^{2n}$ converges and satisfies the equation:
+\begin{proposition}[Symmetric $A$, isotropic $\Sigmae$]\label{prop:P3}
+Suppose $A = A^\top$ and $\Sigmae = \sigma_\varepsilon^2 I_K$. Then $\Sigmaf = \sigma_\varepsilon^2 (I_K - A^2)^{-1}$, and in the eigenbasis $A = U \Lambda U^\top$ with $P_\REM := U^\top E_\REM$,
+\begin{multline*}
+\sigma^2_C = \frac{\sigma_\varepsilon^2}{\Ntot} \Bigl\{ \trace[P_\REM^\top \Lambda^2 (I - \Lambda^2)^{-1} P_\REM] \\
+- \trace[P_\REM^\top \Lambda (I - \Lambda^2)^{-1} P_\REM (P_\REM^\top (I - \Lambda^2)^{-1} P_\REM)^{-1} P_\REM^\top (I - \Lambda^2)^{-1} \Lambda P_\REM] \Bigr\}.
+\end{multline*}
+\end{proposition}
+
+The closed form requires $\Sigmae$ to commute with $A$; the isotropic case is the simplest sub-case. Modes with $|\lambda_k|$ near $1$ and large REM-projection contribute most strongly. General $\Sigmae$ does not admit a clean spectral form (open question, \S\ref{sec:disc}).
+
+\paragraph{Proof of Proposition~\ref{prop:P3}.} For (\ref{eq:VAR1}) with $A = A^\top$ and $\Sigmae = \sigma_\varepsilon^2 I$, the discrete Lyapunov equation reduces to $\Sigmaf = A \Sigmaf A + \sigma_\varepsilon^2 I$. By $\rho(A^2) < 1$, the Neumann-series ansatz $\Sigmaf = \sigma_\varepsilon^2 \sum_{n \ge 0} A^{2n}$ converges and satisfies the equation:
 \begin{equation*}
 \sum_{n \ge 0} A^{2n} - A \sum_{n \ge 0} A^{2n} A = \sum_{n \ge 0} A^{2n} - \sum_{n \ge 0} A^{2(n+1)} = I,
 \end{equation*}
@@ -543,7 +541,17 @@ where $P_\REM := U^\top E_\REM$. Substituting into Theorem~\ref{thm:T1} yields t
 
 The clean spectral form requires $\Sigmae$ to commute with $A$; the isotropic case is the simplest sub-case. For non-commuting $\Sigmae$, $\Sigmaf$ does not have a closed-form $U$-basis expression and Proposition~\ref{prop:P3} does not simplify in this manner.
 
-\paragraph{Proof of Proposition~\ref{prop:P4} (block-equicorrelated REMAINDER).} The Sherman-Morrison identity gives
+\begin{proposition}[Block-equicorrelated REMAINDER]\label{prop:P4}
+Suppose $(\Sigmaf)_\REM = \sigma^2 (I_n + \rho J_n)$ with $n = K_\REM$, $J_n = \mathbf{1}_n \mathbf{1}_n^\top$, $\sigma^2 > 0$, $\rho \in (-1/(n-1), 1)$. Then by Sherman-Morrison, $(\Sigmaf)_\REM^{-1} = \sigma^{-2} (I_n - \rho/(1 + n\rho) \cdot J_n)$, and
+\begin{equation*}
+M(\LOC_j, \LOC_j) = (\Sigmaf)_{\LOC_j, \LOC_j} - \sigma^{-2} (\Sigmaf)_{\LOC_j, \REM} (\Sigmaf)_{\REM, \LOC_j} + \frac{\rho}{\sigma^2 (1 + n\rho)} r_j r_j^\top,
+\end{equation*}
+where $r_j := (\Sigmaf)_{\LOC_j, \REM} \mathbf{1}_n$. Substituting into (\ref{eq:T2}) gives explicit $\sigma^2_C$ in $(\sigma^2, \rho, A_{\REM, \LOC}, (\Sigmaf)_\LOC)$.
+\end{proposition}
+
+The equicorrelated structure separates $(\Sigmaf)_\REM^{-1}$ into an isotropic part plus a rank-one correction; the latter manifests as the $r_j r_j^\top$ term in $M(\LOC_j, \LOC_j)$.
+
+\paragraph{Proof of Proposition~\ref{prop:P4}.} The Sherman-Morrison identity gives
 \begin{equation*}
 (I_n + \rho \mathbf{1}_n \mathbf{1}_n^\top)^{-1} = I_n - \frac{\rho}{1 + n \rho} J_n,
 \end{equation*}
@@ -560,7 +568,13 @@ Using $J_n = \mathbf{1}_n \mathbf{1}_n^\top$ in the last term,
 \end{equation*}
 giving (P4.b). Substitution into (T2a) gives an explicit expression for $\sigC$ in $(\sigma^2, \rho, A_{\REM, \LOC}, (\Sigmaf)_\LOC)$. $\square$
 
-\paragraph{Proof of Proposition~\ref{prop:P5} (sparse $A$ bound).} For the diagonal contributions, the trace inequality $\trace(B^\top M B) \le \lambda_{\max}(M) \cdot \|B\|_F^2$ for symmetric PSD $M$ gives
+\begin{proposition}[Sparse $A$ bound]\label{prop:P5}
+$\sigma^2_C \le \Ntot^{-1} \cdot \|A_{\REM, \LOC}\|_F^2 \cdot [\max_j \lambda_{\max}(M(\LOC_j, \LOC_j)) + (J - 1) \max_{j \ne k} \|M(\LOC_j, \LOC_k)\|_{\mathrm{op}}]$. If $A_{\REM, \LOC}$ has support on at most $s$ entries, $\sigma^2_C \le (s/\Ntot) \cdot \|A_{\REM, \LOC}\|_\infty^2 \cdot [\cdots]$ with the same bracketed factor.
+\end{proposition}
+
+The bracketed factor is the ``amplification factor'' from the LOCAL conditional-covariance structure given REM. Tightness depends on alignment of $A_{\REM, \LOC_j}$ with top eigendirections of $M(\LOC_j, \LOC_j)$.
+
+\paragraph{Proof of Proposition~\ref{prop:P5}.} For the diagonal contributions, the trace inequality $\trace(B^\top M B) \le \lambda_{\max}(M) \cdot \|B\|_F^2$ for symmetric PSD $M$ gives
 \begin{equation*}
 \sigma^2_{C, \LOC_j \leftrightarrow \REM} \le \frac{\lambda_{\max}(M(\LOC_j, \LOC_j))}{\Ntot} \cdot \|A_{\REM, \LOC_j}\|_F^2.
 \end{equation*}
@@ -1014,6 +1028,70 @@ At $T \ge 1000$, empirical size is within $\pm 50\%$ of nominal (PASS). Small-$T
 Power at $T = 1000$ increases monotonically with coupling: rejection rate is $0.094$ at $\sigC = 2.1 \times 10^{-4}$; $0.154$ at $8.4 \times 10^{-4}$; $0.575$ at $3.4 \times 10^{-3}$; $1.000$ at $\sigC \ge 1.4 \times 10^{-2}$. For $\sigC$ scales near $10^{-3}$ the test's power at $T = 1000$ is approximately $15\%$; panels with $T$ near $100$ and $\sigC$ near $10^{-3}$ fall below the test's operational range. Theorem~\ref{thm:T5}'s primary use case is therefore prospective application to panels with $T \ge 500$ at coupling magnitudes the test can detect.
 
 \paragraph{Compute summary.} All seven designs together took 36.5 seconds single-CPU on standard hardware --- well under the 2-hour budget specified in the simulation pre-registration. Reproduction: \path{sim/harness.py} (unified D1--D7 harness, writes per-design JSONs to \path{sim/results/}).
+
+% ════════════════════════════════════════════════════════════════════════════
+\section{Extension to VAR$(p)$: derivations and numerical verification}\label{app:VARp}
+% ════════════════════════════════════════════════════════════════════════════
+
+This appendix presents the derivations supporting \S\ref{sec:varp} and summarizes the numerical-verification battery (scripts \path{verify/var_p/E1--E12}).
+
+\subsection{Proof of Theorem~\ref{thm:T1p} (closed form)}
+
+The four-step proof of Theorem~\ref{thm:T1} extends verbatim. Step~1: joint forecast-error variance at REM is $(\Sigmae)_\REM$ under joint VAR$(p)$ stationarity. Step~2: by the BLP identity applied to $f_{\REM, t}$ given $Z_t := (f_{\REM, t-1}, \ldots, f_{\REM, t-p})$, the restricted forecast-error variance is $(\Sigmaf)_\REM - C \Gamma^{-1} C^\top$ with $C, \Gamma$ defined in \S\ref{sec:varp}. Step~3: the difference is $(\Sigmaf)_\REM - C \Gamma^{-1} C^\top - (\Sigmae)_\REM$. Step~4: the VAR$(p)$ Yule-Walker block identity $(\Sigmae)_\REM = (\Sigmaf)_\REM - \sum_{h=1}^p (A_h R(h)^\top)_\REM$ (obtained by taking the REM block of $R(0) = \sum_h A_h R(h)^\top + \Sigmae$) substitutes, cancelling $(\Sigmaf)_\REM$, and gives (\ref{eq:T1p}). $\square$
+
+\subsection{Companion-form representation}
+
+Let $F_t = (f_t, f_{t-1}, \ldots, f_{t-p+1})^\top \in \mathbb{R}^{Kp}$. Then $F_t = \widetilde A F_{t-1} + B \varepsilon_t$ with $B = (I_K, \mathbf{0}, \ldots, \mathbf{0})^\top \in \mathbb{R}^{Kp \times K}$ and companion-form transition $\widetilde A \in \mathbb{R}^{Kp \times Kp}$. The companion-form stationary covariance $\Sigma_F$ solves $\Sigma_F = \widetilde A \Sigma_F \widetilde A^\top + B \Sigmae B^\top$, whose $(0, h)$ blocks (for $h = 0, \ldots, p-1$) yield $R(h)$ and whose lifted REMAINDER sub-block $(\Sigma_F)_{\REM_\text{comp}}$ equals the block-Toeplitz $\Gamma$. Applying Theorem~\ref{thm:T1} to $(\widetilde A, \Sigma_F)$ at the partition $\REM_\text{comp}$ produces a $K_\REM p \times K_\REM p$ Schur complement whose trace equals $\Ntot \cdot \sigma^{2,(p)}_C$. The lifted innovation covariance $B \Sigmae B^\top$ is rank-$K$ (singular in dim $Kp$), so (A2) fails at the lifted system; this does not affect Theorem~\ref{thm:T1}'s Schur form since the proof uses only $(\Sigma_F)_{\REM_\text{comp}} \succ 0$ (automatic from $\Gamma \succ 0$). Furthermore, the off-diagonal blocks of the Schur complement at the lifted partition vanish at the level of the (rest err)$-$(joint err) difference: the lagged-REM components of $F_t$ are observed in $F_{t-1}$, so their forecast errors are zero in both the joint and restricted cases. Empirically, the off-diagonal entries are machine zero ($< 10^{-14}$ in all tested regimes).
+
+\subsection{Theorem~\ref{thm:T2p} and Corollary~\ref{cor:cond-indep-p}}
+
+Theorem~\ref{thm:T2}'s bilinear expansion lifts verbatim at the companion-state level: expanding $\widetilde A_{\REM_\text{comp}, \cdot} F_{t-1}$ over the lifted LOCAL$_{j, \text{comp}}$ blocks plus $\REM_\text{comp}$ produces
+\begin{equation}
+\Ntot \cdot \sigma^{2,(p)}_C = \sum_{a, b} \trace[\widetilde A_{\REM_\text{comp}, a} \widetilde M^\text{comp}(a, b) \widetilde A_{\REM_\text{comp}, b}^\top],
+\end{equation}
+where the sum is over $a, b \in \{\LOC_{1, \text{comp}}, \ldots, \LOC_{J, \text{comp}}, \REM_\text{comp}\}$ and $\widetilde M^\text{comp}(\REM_\text{comp}, \cdot) = \mathbf{0}$ by the same Schur structural identity as before. Restricting to $a, b \in \{\LOC_{j, \text{comp}}\}$ and splitting diagonal $(j = k)$ vs off-diagonal $(j \ne k)$ yields (\ref{eq:T2p}). For Corollary~\ref{cor:cond-indep-p}, the structural-iff argument is identical to Corollary~\ref{cor:cond-indep}'s proof in Appendix~\ref{app:B}, applied to $\widetilde M^\text{comp}$ at the $(Kp)$-dim companion state. Lauritzen \cite[\S 5.1.3]{Lauritzen1996} gives the Schur-complement$\leftrightarrow$CI equivalence at the Gaussian level.
+
+\subsection{Sampling theory at VAR$(p)$}
+
+The plug-in estimator $\widehat\sigma^{2,(p)}_C := \varphi^{(p)}(\widehat A_{1, T}, \ldots, \widehat A_{p, T}, \widehat \Sigmaf{}_{,T})$ uses OLS-VAR$(p)$ coefficient estimates $\widehat A_{1, T}, \ldots, \widehat A_{p, T}$ and the sample second-moment $\widehat\Sigmaf{}_{,T} = T^{-1} \sum_t f_t f_t^\top$. The smooth functional $\varphi^{(p)}$ inherits continuity on the open set where $\Gamma \succ 0$ from the block-Toeplitz inverse; continuous-mapping gives consistency. Asymptotic normality follows from delta method on $\varphi^{(p)}$ with the joint asymptotic covariance $\Omega^{(p)}$ of $(\mathrm{vec}\,\widehat A_{1, T}, \ldots, \mathrm{vec}\,\widehat A_{p, T}, \vech\widehat\Sigmaf{}_{,T})$ given in L\"utkepohl \cite[Prop.~3.2, Ch.~3.4]{Lutkepohl2005}. The gradient $\nabla \varphi^{(p)}$ has dimension $p K^2 + K(K+1)/2$ and is computed via finite differences in practice or via the chain rule on the block-Toeplitz $\Gamma^{-1}$ derivative.
+
+For Theorem~\ref{thm:T5p}, L\"utkepohl Prop.~3.1 gives $\sqrt{T} \cdot \vec(\widehat A_{1:p, T} - A_{1:p}) \xrightarrow{d} \mathcal{N}(\mathbf{0}, \Gamma_p^{-1} \otimes \Sigmae)$ where $\widehat A_{1:p, T} := (\widehat A_{1, T}, \ldots, \widehat A_{p, T})$ has columns indexed by $Kp$-dim regressors. By the Kronecker structure, the asymptotic covariance of $\eta_T = \vec(\widehat A_{1:p, \REM, \LOC, T})$ is $(\Gamma_p^{-1})_{\LOC \times \text{all lags},\,\LOC \times \text{all lags}} \otimes (\Sigmae)_\REM = (M_\LOC^{(p)})^{-1} \otimes (\Sigmae)_\REM$. The inverse, used in (\ref{eq:T5p}), is $M_\LOC^{(p)} \otimes (\Sigmae)_\REM^{-1}$, which yields the $\chi^2$ limit. For $p = 1$, $\Gamma_p = \Sigmaf$ and $M_\LOC^{(1)} = \Mloc$, recovering Theorem~\ref{thm:T5}.
+
+Near-degeneracy: by the same two-factor $\Gamma^{-1}$ argument as in Appendix~\ref{app:F}, $\partial \varphi^{(p)} / \partial \Sigmaf \sim 1/\lambda_{\min}(\Gamma)^2$ in the dominant direction, hence $V^{(p)} \sim 1/\lambda_{\min}(\Gamma)^4$.
+
+\subsection{Numerical verification battery (E1--E12)}\label{app:VARp_tables}
+
+Reproduction scripts: \path{verify/var_p/E1_thm1_var_p.py} through \path{E12_large_K.py}. All output as JSON in the same directory.
+
+\begin{center}
+\small
+\begin{tabular}{lll}
+\toprule
+Experiment & Verdict & Key numerical evidence \\
+\midrule
+E1 closed-form at $p=2$, $K \in \{4, 6\}$            & PASS  & V1 residual $\le 10^{-15}$; V2 MC rel.\ err.\ 0.14--1.11\% \\
+E2 companion-form equiv at $p \in \{2, 3\}$          & PASS  & max residual $5 \times 10^{-16}$; off-block max $1.1 \times 10^{-14}$ \\
+E3 CI interpretation at $p=2$                        & PARTIAL & cluster decomp lifts exactly; contemp.\ CI does not lift \\
+E4 closed-form sweep $p \in \{2,3,5,7,10\}$, $K$ up to $12$ & PASS  & 25/25 cells; max V1, V3 residuals $9 \times 10^{-15}$; 9/9 MC PASS \\
+E5 companion-form sweep $p$ up to $10$, $K$ up to $12$ & PASS  & 25/25 cells; max residual $9 \times 10^{-15}$ \\
+E6 CI subclass battery (6 subclasses $\times$ 10 seeds) & PARTIAL & contemporaneous CI insufficient; rel cross 1--14\% across DGPs \\
+E7 sampling theory at $p=2$, $T \in \{500, \ldots, 20000\}$ & PASS & rel err 0.014\% at $T=20000$; $\sqrt{T}\!\cdot\!\mathrm{SD}$ ratio $1.135$; CI95 cov 96.0\% \\
+E8 bias at $p=2$, $n_{\mathrm{rep}} = 3000$         & PASS  & $T \cdot$ bias at $T=500$: $+5.66 \pm 2.26$; rel bias $0.33\%$ \\
+E9 Wald test (Theorem~\ref{thm:T5p}) at $p=2$       & PASS  & emp.\ size $0.0525$ ($T=1000$), $0.0450$ ($T=2000$); power $96\%$ at $\sigC = 0.064$ \\
+E10v2 near-degeneracy $V \sim 1/\lambda_{\min}(\Gamma)^4$ & PASS  & log-log slope $\mathbf{-4.0000}$ (theoretical $-4$) \\
+E11 Sympy exact at $K=3$, $p=2$                     & PASS  & closed-form $\equiv$ BLP $\equiv$ companion (identical rationals) \\
+E12 large-$K$ ($K \in \{12, 20, 30\}$, $p \in \{2, 3\}$) & PASS  & sub-ms closed form at $K=30$; sub-second OLS plug-in at $T=10000$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\smallskip
+\noindent\refstepcounter{table}\label{tab:varp_E_summary}\textbf{Table~\ref{tab:varp_E_summary}.} VAR$(p)$ verification battery summary.
+\smallskip
+
+\paragraph{Remark on E6 / Contemporaneous CI failure.} E6 tested six structural subclasses with progressively stronger restrictions: (S1) baseline; (S2) no LOC--LOC at any lag + block-diagonal $\Sigmae$; (S3) S2 + AR$(1)$-within-REM dynamics ($A_h$ has zeros at $(\REM, \REM)$ for $h \ge 2$); (S4) S3 + $A_h$ has zeros at $(\REM, \LOC)$ for $h \ge 2$; (S5) S3 + $A_h$ has zeros at $(\LOC, \REM)$ for $h \ge 2$; (S6) S3 + S4 + S5 combined (REM appears only at lag 1 in every block). At $p = 2$, S6 mean relative cross over 10 seeds is $3.4\%$ (max $14\%$). At $p = 3$, S6 mean is $0.53\%$ (max $\sim 1\%$). Even maximal structural restriction does not drive $\sigma^{2,\text{comp}}_{C, \mathrm{cross}}$ to zero; finite $p$-lag conditioning on REM leaks dependence from REM-history past the conditioning window. The $(Kp)$-dimensional CI graph of $F_t$ remains the load-bearing object.
+
+\paragraph{Computational scale (E12).} Closed-form $\sigma^{2,(p)}_C$ at $K = 30$, $p = 2$ computes in $0.17$~ms; the companion-form Lyapunov solve scales as $O((Kp)^3)$ via standard \texttt{scipy.linalg.solve}. OLS-VAR$(p)$ at $K = 30$, $T = 10000$, $p = 2$ completes in $\sim 0.16$~s on a single laptop CPU. The framework is practical at applied multivariate-panel sizes.
 
 % ════════════════════════════════════════════════════════════════════════════
 \begin{thebibliography}{99}
