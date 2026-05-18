@@ -1,0 +1,31 @@
+{
+  "results": [
+    {
+      "target_lam_min": 0.1,
+      "gamma_lambda_min": -6.360336789335158,
+      "sigma2_C": 125.28482604471307,
+      "grad_phi_norm_sq": 4693511.668944572
+    },
+    {
+      "target_lam_min": 0.01,
+      "gamma_lambda_min": -6.440823923644364,
+      "sigma2_C": 60.72194732430031,
+      "grad_phi_norm_sq": 225670.5830982402
+    },
+    {
+      "target_lam_min": 0.001,
+      "gamma_lambda_min": -6.448885080149561,
+      "sigma2_C": 57.85380757996788,
+      "grad_phi_norm_sq": 183479.11506137814
+    },
+    {
+      "target_lam_min": 0.0001,
+      "gamma_lambda_min": -6.4496913198349715,
+      "sigma2_C": 57.58284968561282,
+      "grad_phi_norm_sq": 179824.76290738673
+    }
+  ],
+  "slope": 0.4339833530943857,
+  "intercept": 6.720810629282095,
+  "theoretical_slope": -4.0
+}

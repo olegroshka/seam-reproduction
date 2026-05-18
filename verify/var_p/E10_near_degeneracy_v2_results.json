@@ -1,0 +1,38 @@
+{
+  "results": [
+    {
+      "target_lam_min": 1.0,
+      "sigma2_C": 0.8487014150431516,
+      "grad_phi_norm_sq": 0.40626560644981835,
+      "SF_REM_condition": 22.807702765707564
+    },
+    {
+      "target_lam_min": 0.1,
+      "sigma2_C": -3.646045163343893,
+      "grad_phi_norm_sq": 3166.6818419814444,
+      "SF_REM_condition": 228.07702765707555
+    },
+    {
+      "target_lam_min": 0.01,
+      "sigma2_C": -48.59351094721858,
+      "grad_phi_norm_sq": 31490286.08637531,
+      "SF_REM_condition": 2280.770276570397
+    },
+    {
+      "target_lam_min": 0.001,
+      "sigma2_C": -498.0681687859394,
+      "grad_phi_norm_sq": 314792284260.24414,
+      "SF_REM_condition": 22807.70276571738
+    },
+    {
+      "target_lam_min": 0.0001,
+      "sigma2_C": -4992.814747244853,
+      "grad_phi_norm_sq": 3148207407429545.0,
+      "SF_REM_condition": 228077.02765628853
+    }
+  ],
+  "slope_all": -3.977592620515142,
+  "slope_small_lam": -3.9999433651280887,
+  "theoretical_slope": -4.0,
+  "overall_pass": true
+}

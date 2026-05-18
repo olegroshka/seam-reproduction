@@ -1,0 +1,271 @@
+{
+  "subclasses_p2": [
+    {
+      "name": "S1_baseline",
+      "build_kwargs": {},
+      "sigma2_C_total": 0.6296678712902273,
+      "sigma2_C_cross_comp": 0.010091235418122926,
+      "sigma2_C_diag_per_LOC": [
+        0.29456511369032334,
+        0.32501152218178037
+      ],
+      "rel_cross_pct": 1.6026282867895703,
+      "M_frobenius": {
+        "M_0_1_fro": 7.035640821988663,
+        "M_1_0_fro": 7.035640821988664
+      },
+      "rho_Atilde": 0.850000000072268,
+      "description": "Random DGP, all cross-couplings present"
+    },
+    {
+      "name": "S2_no_LOC_LOC_plus_blk_diag_Sigma_eps",
+      "build_kwargs": {
+        "A_LOC_LOC_zero": true,
+        "sigma_eps_block_diag": true
+      },
+      "sigma2_C_total": 1.962934494332037,
+      "sigma2_C_cross_comp": -0.09186351420479796,
+      "sigma2_C_diag_per_LOC": [
+        1.338855083222106,
+        0.7159429253147295
+      ],
+      "rel_cross_pct": 4.6799072750544335,
+      "M_frobenius": {
+        "M_0_1_fro": 2.0667504122952502,
+        "M_1_0_fro": 2.066750412295251
+      },
+      "rho_Atilde": 0.84999999990809,
+      "description": "No LOC_j<->LOC_k at any lag + Sigma_eps block-diag"
+    },
+    {
+      "name": "S3_S2_plus_REM_REM_AR1",
+      "build_kwargs": {
+        "A_LOC_LOC_zero": true,
+        "sigma_eps_block_diag": true,
+        "A_h_REM_REM_zero_at_higher_lags": true
+      },
+      "sigma2_C_total": 1.1444442017484262,
+      "sigma2_C_cross_comp": 0.0277528597441341,
+      "sigma2_C_diag_per_LOC": [
+        0.5758974241884425,
+        0.5407939178158497
+      ],
+      "rel_cross_pct": 2.425007676366801,
+      "M_frobenius": {
+        "M_0_1_fro": 0.9538858200813571,
+        "M_1_0_fro": 0.9538858200813572
+      },
+      "rho_Atilde": 0.849999999966398,
+      "description": "S2 + (A_h)_REM,REM = 0 for h>=2 (REM AR(1)-within)"
+    },
+    {
+      "name": "S4_S3_plus_REM_LOC_only_lag1",
+      "build_kwargs": {
+        "A_LOC_LOC_zero": true,
+        "sigma_eps_block_diag": true,
+        "A_h_REM_REM_zero_at_higher_lags": true,
+        "A_h_REM_LOC_only_at_lag1": true
+      },
+      "sigma2_C_total": 1.7201128535242352,
+      "sigma2_C_cross_comp": -0.2734630094902067,
+      "sigma2_C_diag_per_LOC": [
+        0.6896959295228412,
+        1.3038799334916025
+      ],
+      "rel_cross_pct": 15.89796907394331,
+      "M_frobenius": {
+        "M_0_1_fro": 4.889927061826499,
+        "M_1_0_fro": 4.889927061826502
+      },
+      "rho_Atilde": 0.8499999999123309,
+      "description": "S3 + (A_h)_REM,LOC = 0 for h>=2 (LOC->REM only at lag 1)"
+    },
+    {
+      "name": "S5_S3_plus_LOC_REM_only_lag1",
+      "build_kwargs": {
+        "A_LOC_LOC_zero": true,
+        "sigma_eps_block_diag": true,
+        "A_h_REM_REM_zero_at_higher_lags": true,
+        "A_h_LOC_REM_only_at_lag1": true
+      },
+      "sigma2_C_total": 0.852195621613502,
+      "sigma2_C_cross_comp": -0.0548390325475248,
+      "sigma2_C_diag_per_LOC": [
+        0.4012808314245671,
+        0.5057538227364591
+      ],
+      "rel_cross_pct": 6.435028666739155,
+      "M_frobenius": {
+        "M_0_1_fro": 1.651295004727003,
+        "M_1_0_fro": 1.6512950047270036
+      },
+      "rho_Atilde": 0.8499999999376472,
+      "description": "S3 + (A_h)_LOC,REM = 0 for h>=2 (REM->LOC only at lag 1)"
+    },
+    {
+      "name": "S6_S3_S4_S5_REM_only_lag1_everywhere",
+      "build_kwargs": {
+        "A_LOC_LOC_zero": true,
+        "sigma_eps_block_diag": true,
+        "A_h_REM_REM_zero_at_higher_lags": true,
+        "A_h_REM_LOC_only_at_lag1": true,
+        "A_h_LOC_REM_only_at_lag1": true
+      },
+      "sigma2_C_total": 2.8799223809439245,
+      "sigma2_C_cross_comp": -0.4068337342044129,
+      "sigma2_C_diag_per_LOC": [
+        0.9787152732854705,
+        2.3080408418628653
+      ],
+      "rel_cross_pct": 14.126552052110132,
+      "M_frobenius": {
+        "M_0_1_fro": 6.8479100391206655,
+        "M_1_0_fro": 6.8479100391206735
+      },
+      "rho_Atilde": 0.8499999999274456,
+      "description": "S3 + S4 + S5: REM appears only at lag 1 in all blocks"
+    }
+  ],
+  "subclasses_p3": [
+    {
+      "name": "S1_baseline_p3",
+      "build_kwargs": {},
+      "sigma2_C_total": 1.8091567108644118,
+      "sigma2_C_cross_comp": 0.06573849089563935,
+      "sigma2_C_diag_per_LOC": [
+        0.18436790539713518,
+        1.5590503145716337
+      ],
+      "rel_cross_pct": 3.6336537625991294,
+      "M_frobenius": {
+        "M_0_1_fro": 8.632226520135191,
+        "M_1_0_fro": 8.632226520135186
+      },
+      "rho_Atilde": 0.8499999999229434,
+      "description": "Random DGP, all cross-couplings present"
+    },
+    {
+      "name": "S2_no_LOC_LOC_plus_blk_diag_Sigma_eps_p3",
+      "build_kwargs": {
+        "A_LOC_LOC_zero": true,
+        "sigma_eps_block_diag": true
+      },
+      "sigma2_C_total": 0.5108029608632938,
+      "sigma2_C_cross_comp": 0.034218393042027846,
+      "sigma2_C_diag_per_LOC": [
+        0.11115949488152144,
+        0.36542507293974436
+      ],
+      "rel_cross_pct": 6.698941796303666,
+      "M_frobenius": {
+        "M_0_1_fro": 1.0859014728929903,
+        "M_1_0_fro": 1.0859014728929903
+      },
+      "rho_Atilde": 0.8499999999395783,
+      "description": "No LOC_j<->LOC_k at any lag + Sigma_eps block-diag"
+    },
+    {
+      "name": "S3_S2_plus_REM_REM_AR1_p3",
+      "build_kwargs": {
+        "A_LOC_LOC_zero": true,
+        "sigma_eps_block_diag": true,
+        "A_h_REM_REM_zero_at_higher_lags": true
+      },
+      "sigma2_C_total": 1.41533075446342,
+      "sigma2_C_cross_comp": 0.04350316357444038,
+      "sigma2_C_diag_per_LOC": [
+        0.19128881344975845,
+        1.1805387774392204
+      ],
+      "rel_cross_pct": 3.0737100453196398,
+      "M_frobenius": {
+        "M_0_1_fro": 1.3806142067814258,
+        "M_1_0_fro": 1.3806142067814258
+      },
+      "rho_Atilde": 0.8499999999236596,
+      "description": "S2 + (A_h)_REM,REM = 0 for h>=2 (REM AR(1)-within)"
+    },
+    {
+      "name": "S4_S3_plus_REM_LOC_only_lag1_p3",
+      "build_kwargs": {
+        "A_LOC_LOC_zero": true,
+        "sigma_eps_block_diag": true,
+        "A_h_REM_REM_zero_at_higher_lags": true,
+        "A_h_REM_LOC_only_at_lag1": true
+      },
+      "sigma2_C_total": 0.650651991726767,
+      "sigma2_C_cross_comp": -0.0026134090243111266,
+      "sigma2_C_diag_per_LOC": [
+        0.01947370378012165,
+        0.6337916969709563
+      ],
+      "rel_cross_pct": 0.40166003601639544,
+      "M_frobenius": {
+        "M_0_1_fro": 0.5145784284420823,
+        "M_1_0_fro": 0.5145784284420826
+      },
+      "rho_Atilde": 0.8499999999282168,
+      "description": "S3 + (A_h)_REM,LOC = 0 for h>=2 (LOC->REM only at lag 1)"
+    },
+    {
+      "name": "S5_S3_plus_LOC_REM_only_lag1_p3",
+      "build_kwargs": {
+        "A_LOC_LOC_zero": true,
+        "sigma_eps_block_diag": true,
+        "A_h_REM_REM_zero_at_higher_lags": true,
+        "A_h_LOC_REM_only_at_lag1": true
+      },
+      "sigma2_C_total": 1.2349346239770396,
+      "sigma2_C_cross_comp": 0.010316315307378787,
+      "sigma2_C_diag_per_LOC": [
+        0.13232885359505744,
+        1.0922894550746043
+      ],
+      "rel_cross_pct": 0.8353733960552225,
+      "M_frobenius": {
+        "M_0_1_fro": 1.3573932974217857,
+        "M_1_0_fro": 1.357393297421786
+      },
+      "rho_Atilde": 0.8499999999674025,
+      "description": "S3 + (A_h)_LOC,REM = 0 for h>=2 (REM->LOC only at lag 1)"
+    },
+    {
+      "name": "S6_S3_S4_S5_REM_only_lag1_everywhere_p3",
+      "build_kwargs": {
+        "A_LOC_LOC_zero": true,
+        "sigma_eps_block_diag": true,
+        "A_h_REM_REM_zero_at_higher_lags": true,
+        "A_h_REM_LOC_only_at_lag1": true,
+        "A_h_LOC_REM_only_at_lag1": true
+      },
+      "sigma2_C_total": 0.8275191194997088,
+      "sigma2_C_cross_comp": -0.004388881746281173,
+      "sigma2_C_diag_per_LOC": [
+        0.06085829259314658,
+        0.7710497086528438
+      ],
+      "rel_cross_pct": 0.5303662045820221,
+      "M_frobenius": {
+        "M_0_1_fro": 1.0438509428688316,
+        "M_1_0_fro": 1.0438509428688318
+      },
+      "rho_Atilde": 0.8499999999214556,
+      "description": "S3 + S4 + S5: REM appears only at lag 1 in all blocks"
+    }
+  ],
+  "S6_robustness_seeds": [
+    14.126552052110132,
+    3.5166622585887146,
+    0.6439675919628329,
+    0.7199660100974874,
+    1.7034153296368468,
+    1.765615359242315,
+    0.03349607362716264,
+    6.672599623774206,
+    0.49550789795883254,
+    4.470163097612101
+  ],
+  "S6_mean": 3.414794529461063,
+  "S6_max": 14.126552052110132,
+  "S6_zero_at_threshold_01pct": false
+}
