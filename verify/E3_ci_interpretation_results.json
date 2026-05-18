@@ -1,0 +1,45 @@
+{
+  "overall_pass": false,
+  "DGPs": {
+    "DGP_A_no_LOC_LOC_coupling": {
+      "description": "No LOC_1<->LOC_2 at any lag, Sigma_eps block-diagonal LOC_1|LOC_2",
+      "sigma2_C_total": 0.7658514093423903,
+      "sigma2_C_total_companion": 0.7658514093423898,
+      "sigma2_LOC1_diag": 0.28326944772087603,
+      "sigma2_LOC2_diag": 0.4616978442026431,
+      "sigma2_cross_companion": 0.020884117418870786,
+      "M_12_frobenius": 2.0060645677499007,
+      "M_12_block_norms_by_lag_pair": {
+        "lag0_vs_lag0": 0.6019818374498671,
+        "lag0_vs_lag1": 0.8329245163353399,
+        "lag1_vs_lag0": 0.8973035670707713,
+        "lag1_vs_lag1": 1.4707127442065933
+      },
+      "contemp_sigma2_LOC1_contemp_lag1_only": 0.4607089739882371,
+      "contemp_sigma2_LOC2_contemp_lag1_only": 0.5959368845278501,
+      "contemp_sigma2_cross_contemp_lag1_only": 0.2457742867195878,
+      "contemp_M_12_contemp_frobenius": 4.278234963869415,
+      "prediction_cross_comp_near_zero_PASS": false
+    },
+    "DGP_B_lag2_LOC_LOC_coupling": {
+      "description": "DGP A plus A_2[LOC_1, LOC_2] nonzero (lag-2 LOC_2->LOC_1 direct edge)",
+      "sigma2_C_total": 0.7410083805216053,
+      "sigma2_C_total_companion": 0.7410083805216059,
+      "sigma2_LOC1_diag": 0.37790380501764526,
+      "sigma2_LOC2_diag": 0.3685539250009535,
+      "sigma2_cross_companion": -0.005449349496992905,
+      "M_12_frobenius": 2.073920242073764,
+      "M_12_block_norms_by_lag_pair": {
+        "lag0_vs_lag0": 0.6788283903360192,
+        "lag0_vs_lag1": 0.8967442386169968,
+        "lag1_vs_lag0": 0.5987454301190288,
+        "lag1_vs_lag1": 1.636365138768212
+      },
+      "contemp_sigma2_LOC1_contemp_lag1_only": 0.4960381063371383,
+      "contemp_sigma2_LOC2_contemp_lag1_only": 0.4279662101325373,
+      "contemp_sigma2_cross_contemp_lag1_only": 0.02862853285821942,
+      "contemp_M_12_contemp_frobenius": 2.1476821254486946,
+      "prediction_cross_comp_nonzero_PASS": true
+    }
+  }
+}

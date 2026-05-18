@@ -1,0 +1,46 @@
+{
+  "overall_pass": false,
+  "instances": {
+    "instance_1": {
+      "K": 4,
+      "K_LOC": 2,
+      "K_REM": 2,
+      "p": 2,
+      "sigma_cross": 0.3,
+      "seed": 1001,
+      "sigma2_C_closed_form": 0.2089193779975751,
+      "sigma2_C_BLP_direct": 0.20891937799757682,
+      "V1_residual": 1.7208456881689926e-15,
+      "V1_pass": true,
+      "sigma2_C_MC_mean": 0.2065904968434666,
+      "sigma2_C_MC_SE": 0.0010189315303024981,
+      "V2_rel_err_pct": 1.1147272102904402,
+      "V2_n_SE_away": 2.2856110394553357,
+      "V2_pass": true
+    },
+    "instance_2": {
+      "K": 6,
+      "K_LOC": 4,
+      "K_REM": 2,
+      "p": 2,
+      "sigma_cross": 0.3,
+      "seed": 2002,
+      "sigma2_C_closed_form": 1.598547907906473,
+      "sigma2_C_BLP_direct": 1.5985479079064728,
+      "V1_residual": 2.220446049250313e-16,
+      "V1_pass": true,
+      "sigma2_C_MC_mean": 1.5962866283004506,
+      "sigma2_C_MC_SE": 0.003833321022409302,
+      "V2_rel_err_pct": 0.1414583569774817,
+      "V2_n_SE_away": 0.589900922151611,
+      "V2_pass": true
+    },
+    "instance_3": {
+      "description": "A_2 = 0 reduces VAR(2) to VAR(1); closed form must match Theorem 1",
+      "sigma2_C_VAR2_A2_zero": 0.6385049722163396,
+      "sigma2_C_VAR1_Theorem1": 0.7111783867349754,
+      "V3_residual": 0.07267341451863574,
+      "V3_pass": false
+    }
+  }
+}
