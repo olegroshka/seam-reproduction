@@ -21,3 +21,6 @@ paper/*.synctex.gz
 # Verification re-runs (originals are committed only as "results from clean run")
 # Keep cached sim/results/*.json under version control so reviewers can diff.
 verify/*_run.log
+
+# Pre-submission peer-review materials (multi-LLM stress-test, not for publication)
+review/
